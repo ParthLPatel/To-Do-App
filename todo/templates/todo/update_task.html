@@ -1,0 +1,37 @@
+{% extends 'todo/layout.html' %}
+
+{% block body %}
+
+
+
+<!-- {{ task_to_be_updated.id }} / {{ task_to_be_updated.content }} / {{ task_to_be_updated.priority }} -->
+<center>
+<div class="card text-white bg-dark mb-3" style="width: 600px; margin-top: 30px; border-radius:10px;">
+    <div class="card-header bg-success">
+        <h3><b>Update Tasks</b></h3>
+    </div>
+    <!-- <div class="card-body">
+        <h5 class="card-title"></h5>
+        <center>
+        </center>
+    </div> -->
+</div>  
+
+<form action="{% url 'todo:updateTask' task.id %}" method="POST" style="height: 500px;border-radius:10px; ">
+    <div style="width:600px; height:100px; padding:30px" class="table-dark">
+    {% csrf_token %}
+    {{form.as_table}}
+    &nbsp;
+    <input type="submit" value='Update' class="btn btn-warning" style="height: 40px; font-weight:bold; color:white">
+    </div>
+</form>
+
+
+</center>
+
+<!-- {{update_task_form}} -->
+
+
+
+
+{% endblock %}

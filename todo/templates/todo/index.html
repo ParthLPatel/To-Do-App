@@ -1,0 +1,128 @@
+{% extends 'todo/layout.html' %}   
+
+{% block body %}
+        
+        <!-- header -->
+        <center>
+        <div class="card text-white bg-dark mb-3" style="width: 570px; margin-top: 30px; border-radius:10px;">
+            <div class="card-header bg-success"><h3><b>To Do App</b></h3></div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <center>
+                    <form action="{% url 'todo:addTask' %}" method="POST">
+                        {% csrf_token %}
+                        {{addTaskForm}}
+                        &nbsp;
+                        <input type="submit" class="btn btn-success" style="height:fit-content">
+                    </form>
+                </center>
+            </div>
+        
+
+
+
+        <center>
+        <table class="table table-striped bg-dark text-white" 
+              style="height:fit-content; width:570px; border-radius:10px;
+              ">
+            <!-- <thead style="display: block;">
+                <tr style="display: block; ">
+                    <th>Priority</th>
+                    <th>Task</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Update Task</th>
+                    <th>Delete Task</th>
+                </tr>
+            </thead> -->
+            <tbody style="
+                        display:block;
+                        width:570px;
+                        overflow: auto;
+                        height: 350px;">
+            
+
+        {% for task in tasks %}
+                <tr>
+                    <td>
+                        {% if task.priority == '1' %}
+                        ✔✔✔
+                        {% elif task.priority == '2'%}
+                        ✔✔
+                        {% elif task.priority == '3'%}
+                        ✔
+                        {%endif%}
+                    </td>
+                    <td style="width: 250px;">{{task.content}}</td>
+                    <td>{{task.on_time}}</td>
+                    <td>{{task.on_date}}</td>
+
+                    <td> 
+                        <form action="{% url 'todo:updateTask' task.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="submit" value='Update' class="btn btn-warning">
+
+
+                            <!-- Button trigger modal -->
+                            <!-- <button type="button" data-toggle="modal" data-target="#exampleModal{{task.id}}">
+                                Update
+                            </button> -->
+                    
+                            <!-- Modal -->
+                            <!-- <div class="modal fade" id="exampleModal{{task.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Update Task</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{% url 'todo:updateTask' task.id %}" method="POST">
+                                                {% csrf_token %} 
+                                                    {{update_form}}
+                                                <input type="submit" value='Save'>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{% url 'todo:deleteTask' task.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="submit" value='Delete' class="btn btn-danger">
+                        </form>
+                    </td>
+                </tr>
+        {% empty %}
+                <tr style="text-align: center; ">
+                    <td colspan="6">No tasks !!</td>
+                </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        </center>
+        
+        </div>
+        
+
+
+ 
+        <!-- <form action="{% url 'todo:addTask' %}" method="POST">
+            {% csrf_token %}
+            
+            <input type="text" name="content" required maxlength="150">
+            <input type="submit">
+        </form> -->
+        
+
+    {% endblock %}
