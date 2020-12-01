@@ -28,8 +28,8 @@ Open your Anaconda command prompt/ python env.
 
 ```
 
-![alt text](https://github.com/ParthLPatel/To-Do-App/blob/master/img1.png?raw=true)
-![alt text](https://github.com/ParthLPatel/To-Do-App/blob/master/img2.png?raw=true)
+![alt text](https://github.com/ParthLPatel/To-Do-App/blob/main/img1.png?raw=true)
+![alt text](https://github.com/ParthLPatel/To-Do-App/blob/main/img2.png?raw=true)
 
 
 
